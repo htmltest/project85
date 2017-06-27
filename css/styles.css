@@ -382,7 +382,7 @@ header {padding:29px 0 31px 0; background:#fff}
     .menu-add-main li.menu-add-main-link a:after {right:50px}
 }
 
-.menu-add-sections {opacity:0; visibility:hidden; z-index:990; position:absolute; left:215px; top:-142px; height:99999px; background:#fff; width:298px; box-shadow:0 15px 30px rgba(185, 185, 185, .52); transition:left .4s, opacity .4s, visibility .4s}
+.menu-add-sections {opacity:0; visibility:hidden; z-index:990; position:fixed; left:215px; top:0; bottom:0; background:#fff; width:298px; box-shadow:0 15px 30px rgba(185, 185, 185, .52); transition:left .4s, opacity .4s, visibility .4s}
 @media screen and (min-width:1200px) {
     .menu-add-sections {transition:none}
 }
