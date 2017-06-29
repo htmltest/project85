@@ -779,17 +779,18 @@ header {padding:29px 0 31px 0; background:#fff}
 .catalogue-item-event-discount {background:#ea1c23; font-size:16px}
 .catalogue-item-event-new {background:#969696}
 
+.catalogue-list .slick-dots {text-align:center; font-size:0; line-height:0; letter-spacing:-1px; padding:0; margin:-10px 0 10px 0}
+.catalogue-list .slick-dots li {margin:0 0 0 5px; padding:0; display:inline-block; vertical-align:top}
+.catalogue-list .slick-dots li:before {display:none}
+.catalogue-list .slick-dots li:first-child {margin:0}
+.catalogue-list .slick-dots li button {display:block; width:47px; height:3px; border-radius:0; border:none; background:#e9e9e9; margin:0; padding:0; outline:none; -webkit-appearance:none; cursor:pointer; font-size:0; line-height:0; text-indent:100px}
+.catalogue-list .slick-dots li.slick-active button {background:#ea1c23}
+
 @media screen and (max-width:1199px) {
     .catalogue-item {width:50%}
     .catalogue-item-ctrl {margin-left:20px; margin-right:20px}
     .catalogue-item-name {padding-left:20px; padding-right:20px; font-size:14px; line-height:25px}
     .catalogue-item-price-old {clear:left; margin:0}
-    .catalogue-list .slick-dots {text-align:center; font-size:0; line-height:0; letter-spacing:-1px; margin:0; padding:47px 0 0 0}
-    .catalogue-list .slick-dots li {margin:0 0 0 5px; padding:0; display:inline-block; vertical-align:top}
-    .catalogue-list .slick-dots li:before {display:none}
-    .catalogue-list .slick-dots li:first-child {margin:0}
-    .catalogue-list .slick-dots li button {display:block; width:47px; height:3px; border-radius:0; border:none; background:#e9e9e9; margin:0; padding:0; outline:none; -webkit-appearance:none; cursor:pointer; font-size:0; line-height:0; text-indent:100px}
-    .catalogue-list .slick-dots li.slick-active button {background:#ea1c23}
 }
 
 @media screen and (max-width:767px) {
@@ -815,9 +816,13 @@ header {padding:29px 0 31px 0; background:#fff}
 .main-recommend .catalogue-item:nth-child(3n) .catalogue-item-compare div {background:url(../images/catalogue-item-compare.png); margin-left:-156px}
 .main-recommend .catalogue-item.in-compare:nth-child(3n) .catalogue-item-compare div {background:url(../images/catalogue-item-compare.png); margin-left:-149px}
 
-.main-recommend .catalogue-item:nth-child(4n) .catalogue-item-cart div {background:url(../images/catalogue-item-compare-right.png); margin-left:-269px}
-.main-recommend .catalogue-item:nth-child(4n) .catalogue-item-compare div {background:url(../images/catalogue-item-compare-right.png); margin-left:-269px}
-.main-recommend .catalogue-item.in-compare:nth-child(4n) .catalogue-item-compare div {background:url(../images/catalogue-item-compare-right.png); margin-left:-262px}
+.main-recommend .catalogue-item.slick-active+.catalogue-item.slick-active+.catalogue-item.slick-active+.catalogue-item.slick-active .catalogue-item-cart div {background:url(../images/catalogue-item-compare-right.png); margin-left:-269px}
+.main-recommend .catalogue-item.slick-active+.catalogue-item.slick-active+.catalogue-item.slick-active+.catalogue-item.slick-active .catalogue-item-compare div {background:url(../images/catalogue-item-compare-right.png); margin-left:-269px}
+.main-recommend .catalogue-itemslick-active+.catalogue-item.slick-active+.catalogue-item.slick-active+.catalogue-item.slick-active.in-compare .catalogue-item-compare div {background:url(../images/catalogue-item-compare-right.png); margin-left:-262px}
+
+@media screen and (min-width:1200px) {
+    .main-recommend .catalogue-item-inner:hover {box-shadow:0 15px 15px rgba(0, 0, 0, .14)}
+}
 
 @media screen and (max-width:1199px) {
     .side+.content .catalogue-recommend {margin-left:-240px}
@@ -857,8 +862,8 @@ header {padding:29px 0 31px 0; background:#fff}
 .recommend-tab {position:absolute; left:-9999px; top:-9999px; width:100%}
 .recommend-tab.active {position:relative; left:auto; top:auto}
 
-.recommend-tab .catalogue-list {white-space:nowrap; overflow:hidden; padding:0 0 50px 0; margin-bottom:-50px}
-.recommend-tab .catalogue-item {white-space:normal; padding-top:0}
+.recommend-tab .catalogue-list {white-space:nowrap; overflow:hidden; padding:0; margin:0 0 -20px 0}
+.recommend-tab .catalogue-item {white-space:normal; padding-top:0; padding-bottom:50px}
 
 .catalogue-text {background:#fff; padding:50px; margin:50px 0 0 0; box-shadow:0 1px 1px rgba(0, 0, 0, .07)}
 .catalogue-text h2 {margin:0 0 37px 0}
@@ -1158,13 +1163,13 @@ header {padding:29px 0 31px 0; background:#fff}
 .slider {position:relative; margin:25px 0}
 .slider-content {font-size:0; line-height:0; letter-spacing:-1px; width:100%; white-space:nowrap}
 .slider-item {display:inline-block; vertical-align:top; width:1200px; white-space:normal}
-.slider-item-inner {display:block; text-decoration:none; background:#000 no-repeat center; margin:0 15px; height:525px; position:relative; overflow:hidden; color:#fff; padding:0 700px 0 100px}
+.slider-item-inner {display:block; text-decoration:none; background:#000 no-repeat center; margin:0 15px; height:425px; position:relative; overflow:hidden; color:#fff; padding:0 700px 0 100px}
 .slider-item-inner:hover {color:#fff}
-.slider-item-title {color:#fff; font-weight:bold; font-size:46px; line-height:50px; letter-spacing:0; padding:58px 0 0 0}
+.slider-item-title {color:#fff; font-weight:bold; font-size:34px; line-height:38px; letter-spacing:0; padding:40px 0 0 0}
 .slider-item-title a {color:#fff; text-decoration:none}
-.slider-item-text {font-size:20px; line-height:25px; letter-spacing:0; font-weight:300; padding:30px 0 0 0}
-.slider-item-price {font-size:25px; line-height:30px; letter-spacing:0; font-weight:bold; padding:35px 0 0 0}
-.slider-item-price:before {content:""; display:block; width:34px; height:4px; background:#fff; margin:0 0 30px 0}
+.slider-item-text {font-size:20px; line-height:25px; letter-spacing:0; font-weight:300; padding:27px 0 0 0}
+.slider-item-price {font-size:25px; line-height:30px; letter-spacing:0; font-weight:bold; padding:24px 0 0 0}
+.slider-item-price:before {content:""; display:block; width:34px; height:4px; background:#fff; margin:0 0 21px 0}
 .slider-item-list {font-size:15px; line-height:25px; letter-spacing:0; padding:27px 0 0 0; position:relative; z-index:1}
 .slider-item-list ul {margin:0}
 .slider-item-list li {margin:0; padding:0}
@@ -1190,7 +1195,7 @@ header {padding:29px 0 31px 0; background:#fff}
 @media screen and (max-width:1199px) {
     .slider {margin:25px}
     .slider-item {width:100%}
-    .slider-item-inner {margin:0; padding:0 30px; height:550px}
+    .slider-item-inner {margin:0; padding:0 130px 0 30px; height:450px}
     .slider-item-title {padding:44px 0 0 0}
     .slider-ctrl {left:30px; bottom:50px; margin:0}
 }
