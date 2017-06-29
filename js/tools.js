@@ -445,42 +445,6 @@ $(document).ready(function() {
         $('.slick-dots').css({'top': $('.compare-list-wrap .catalogue-item-inner:first').outerHeight()});
     });
 
-    $('.recommend-tab .catalogue-list').slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        adaptiveHeight: true,
-        arrows: false,
-        dots: true,
-        responsive: [
-            {
-                breakpoint: 1199,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3
-                }
-            },
-            {
-                breakpoint: 1023,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    }).on('setPosition', function(slick) {
-        $('.recommend-tab .catalogue-list').each(function() {
-            resizeCatalogue($(this));
-        });
-    });
-
     $('.catalogue-filter-mobile-link').click(function(e) {
         $('html').toggleClass('filter-open');
         $(window).scrollTop(0);
@@ -861,6 +825,36 @@ function windowClose() {
 }
 
 function resizeCatalogue(curList) {
+    if (curList.parents().filter('.recommend-tab').length > 0) {
+        if ($(window).width() < 1200) {
+            if (!curList.hasClass('slick-slider')) {
+                curList.slick({
+                    infinite: true,
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    adaptiveHeight: true,
+                    arrows: false,
+                    dots: true,
+                    responsive: [
+                        {
+                            breakpoint: 767,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                centerMode: false,
+                                variableWidth: false
+                            }
+                        }
+                    ]
+                });
+            }
+        } else {
+            if (curList.hasClass('slick-slider')) {
+                curList.slick('unslick');
+            }
+        }
+    }
+
     curList.find('.catalogue-item-photo').css({'min-height': '0px'});
 
     curList.find('.catalogue-item-photo').each(function() {
