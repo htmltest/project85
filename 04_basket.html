@@ -2,7 +2,7 @@
 <html lang="ru">
     <head>
         <meta charset="utf-8" />
-        <title>Decore Amore</title>
+        <title>Decore Amore - аренда декора, посуды и мебели</title>
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700,700i,900&amp;subset=cyrillic" />
         <link rel="stylesheet" href="css/styles.css" />
@@ -18,14 +18,14 @@
         <script src="js/validation/jquery.validate.min.js"></script>
         <script src="js/validation/messages_ru.js"></script>
         <script src="js/jquery-ui-1.11.4.spinner/jquery-ui.min.js"></script>
+        <script src="js/jquery-ui-1.11.4.spinner/datepicker-ru.js"></script>
         <script src="js/fancybox/jquery.fancybox.min.js"></script>
         <script src="js/slick/slick.min.js"></script>
         <script src="js/jscrollpane/jquery.mousewheel.js"></script>
         <script src="js/jscrollpane/jquery.jscrollpane.min.js"></script>
         <script src="js/tools.js"></script>
 
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="favicon.png" type="image/png" />
 
         <meta name="viewport" content="width=device-width" />
     </head>
@@ -711,7 +711,7 @@
                                                     </div>
                                                     <div class="basket-info-row">
                                                         <div class="basket-info-title">Доставка</div>
-                                                        <div class="basket-info-value"><span id="basket-delivery">500</span> &#8381;</div>
+                                                        <div class="basket-info-value"><span id="basket-delivery">0</span> &#8381;</div>
                                                     </div>
                                                     <div class="basket-info-row">
                                                         <div class="basket-info-title">Скидка</div>
@@ -726,7 +726,7 @@
 
                                                 <div class="basket-summ">
                                                     <div class="basket-summ-title">Итого</div>
-                                                    <div class="basket-summ-value"><span id="basket-summ">38 204</span> &#8381;</div>
+                                                    <div class="basket-summ-value"><span id="basket-summ">37 739</span> &#8381;</div>
                                                 </div>
 
                                                 <div class="basket-order-link-mobile"><a href="#" class="btn-submit">Оформить заказ</a></div>
@@ -780,52 +780,82 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="checkout-form-row checkout-form-row-2">
+                                                    <div class="form-row">
+                                                        <div class="form-label">кол-во дней аренды</div>
+                                                        <div class="form-field">
+                                                            <div class="form-input"><input type="number" name="rentDays" id="rentDays" value="1" min="1" step="1" class="required" /></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-label">Дата <strong id="fieldDateBeginLabel">начала</strong> аренды</div>
+                                                        <div class="form-field">
+                                                            <div class="form-input form-input-date"><input type="text" name="rentDateBegin" id="rentDateBegin" value="" class="required" /></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row" id="fieldDateEnd">
+                                                        <div class="form-label">Дата окончания аренды</div>
+                                                        <div class="form-field">
+                                                            <div class="form-input form-input-date"><input type="text" name="rentDateEnd" id="rentDateEnd" value="" /></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="order-date-hint">Внимание: дни забора(<span id="rentDatePrev"></span>) и возврата(<span id="rentDateNext"></span>) не считаются арендой.</div>
+
                                                 <div class="form-row">
-                                                    <div class="form-label">Адрес и способ доставки</div>
+                                                    <div class="form-label">Доставка (туда/обратно)</div>
                                                     <div class="form-field">
                                                         <div class="form-select">
                                                             <select name="delivery" data-placeholder="Выберите значение" id="changeDelivery">
                                                                 <option value=""></option>
-                                                                <option value="1">Самовывоз из магазина</option>
-                                                                <option value="2">Доставка по Москве</option>
-                                                                <option value="3" selected="selected">Доставка почтой в Регионы</option>
+                                                                <option value="1">Пеший курьер по Москве</option>
+                                                                <option value="2">Легковой а/м по Москве</option>
+                                                                <option value="3">Грузовой а/м по Москве</option>
+                                                                <option value="4">Доставка за МКАД (индивидуально)</option>
+                                                                <option value="5" selected="selected">Самовывоз (не для всех позиций)</option>
                                                             </select>
                                                         </div>
 
                                                         <div class="order-delivery">
-                                                            <div class="order-delivery-item" id="delivery-1">Стоимость: бесплатно</div>
-                                                            <div class="order-delivery-item" id="delivery-2">Сроки доставки: 1-2 дня<br />Стоимость: <span class="delivery-price">500</span> &#8381;<br />Бесплатно от: <span class="delivery-free">50 000</span> &#8381;</div>
-                                                            <div class="order-delivery-item active" id="delivery-3">
-                                                                Сроки доставки: 3-4 дня<br />Стоимость: <span class="delivery-price">1000</span> &#8381;<br />Бесплатно от: <span class="delivery-free">50 000</span> &#8381;
-                                                                <div class="checkout-form-row checkout-form-row-2">
-                                                                    <div class="form-row">
-                                                                        <div class="form-label">Индекс</div>
-                                                                        <div class="form-field">
-                                                                            <div class="form-input"><input type="text" name="post" value="" /></div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="form-row">
-                                                                        <div class="form-label">Область</div>
-                                                                        <div class="form-field">
-                                                                            <div class="form-input"><input type="text" name="area" value="" /></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
+                                                            <div class="order-delivery-item" id="delivery-1">
+                                                                Стоимость: <span class="delivery-price">1 000</span> &#8381;
                                                                 <div class="form-row">
-                                                                    <div class="form-label">Населенный пункт</div>
+                                                                    <div class="form-label">Адрес доставки</div>
                                                                     <div class="form-field">
-                                                                        <div class="form-input"><input type="text" name="city" value="" /></div>
+                                                                        <div class="form-input"><input type="text" name="addressFoot" value="" /></div>
                                                                     </div>
                                                                 </div>
-
+                                                            </div>
+                                                            <div class="order-delivery-item" id="delivery-2">
+                                                                Стоимость: <span class="delivery-price">2 000</span> &#8381;
                                                                 <div class="form-row">
-                                                                    <div class="form-label">Адрес</div>
+                                                                    <div class="form-label">Адрес доставки</div>
                                                                     <div class="form-field">
-                                                                        <div class="form-input"><input type="text" name="address" value="" /></div>
+                                                                        <div class="form-input"><input type="text" name="addressLeg" value="" /></div>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="order-delivery-item" id="delivery-3">
+                                                                Стоимость: <span class="delivery-price">4 000</span> &#8381;
+                                                                <div class="form-row">
+                                                                    <div class="form-label">Адрес доставки</div>
+                                                                    <div class="form-field">
+                                                                        <div class="form-input"><input type="text" name="addressGruz" value="" /></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="order-delivery-item" id="delivery-4">
+                                                                Стоимость: индивидуальный расчет
+                                                                <div class="form-row">
+                                                                    <div class="form-label">Адрес доставки</div>
+                                                                    <div class="form-field">
+                                                                        <div class="form-input"><input type="text" name="addressMkad" value="" /></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="order-delivery-item active" id="delivery-5">
+                                                                Стоимость: бесплатно
                                                             </div>
                                                         </div>
                                                     </div>
@@ -839,6 +869,12 @@
                                                     <div class="form-label">Комментарий к&nbsp;заказу <span>/ опционально</span></div>
                                                     <div class="form-field">
                                                         <div class="form-input"><textarea name="comment" rows="5" cols="10"></textarea></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-row form-row-order-private">
+                                                    <div class="form-checkbox">
+                                                        <label><input type="checkbox" name="private" checked="checked" class="required" /><span></span><strong>Я принимаю условия <a href="#" class="target">Публичной оферты</a><br /> и <a href="#" class="target">Политики конфеденциальности</a></strong></label>
                                                     </div>
                                                 </div>
 

@@ -643,6 +643,8 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+    initOrderDates();
+
 });
 
 $(window).on('load resize', function() {
@@ -662,17 +664,16 @@ function recalcCart() {
     var curDeliveryPrice = 0;
     if ($('.order-delivery-item.active').length > 0) {
         if ($('.order-delivery-item.active .delivery-price').length > 0) {
-            curDeliveryPrice = Number($('.order-delivery-item.active .delivery-price').html());
-        }
-        if ($('.order-delivery-item.active .delivery-free').length > 0) {
-            var curDeliveryFree = Number($('.order-delivery-item.active .delivery-free').html());
-            if (curSumm >= curDeliveryFree) {
-                curDeliveryPrice = 0;
-            }
+            curDeliveryPrice = Number($('.order-delivery-item.active .delivery-price').html().replace(' ', ''));
         }
     }
 
-    $('#basket-price').html(String(curSumm).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 '));
+    var curDays = Number($('#rentDays').val());
+    if (curDays > 1) {
+        curDays = 1 + (curDays - 1) * .5;
+    }
+
+    $('#basket-price').html(String(curSumm * curDays).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 '));
     $('#basket-delivery').html(String(curDeliveryPrice).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 '));
     var allSumm = curSumm + curDeliveryPrice + Number($('#basket-discount').html().replace(' ', ''));
     if ($('#basket-coupon-value').length > 0) {
@@ -682,6 +683,7 @@ function recalcCart() {
     if (allSumm < 0) {
         allSumm = 0;
     }
+    allSumm = (curSumm * curDays) + curDeliveryPrice + Number($('#basket-discount').html().replace(' ', '')) + Number($('#basket-coupon-summ').html().replace(' ', ''));
     $('#basket-summ').html(String(allSumm).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 '));
 }
 
@@ -986,4 +988,118 @@ function resizeCatalogue(curList) {
         });
     });
 
+}
+
+var dateFormat = 'dd M yy';
+
+function initOrderDates() {
+    $('#rentDateBegin').datepicker({
+        dateFormat: dateFormat,
+        minDate: 1
+    }).on('change', function() {
+        var curDate = new Date($('#rentDateBegin').datepicker('getDate'));
+        var minDate = new Date($('#rentDateBegin').datepicker('getDate'));
+        minDate.setDate(minDate.getDate() + 1);
+        curDate.setDate(curDate.getDate() + Number($('#rentDays').val()) - 1);
+
+        $('#rentDateEnd').datepicker('option', 'minDate', minDate);
+        $('#rentDateEnd').datepicker('setDate', curDate);
+
+        var prevDate = new Date($('#rentDateBegin').datepicker('getDate'));
+        prevDate.setDate(prevDate.getDate() - 1);
+        $('#rentDatePrev').html(formatDate(prevDate));
+        if ($('#rentDays').val() > 1) {
+            var nextDate = new Date($('#rentDateEnd').datepicker('getDate'));
+            nextDate.setDate(nextDate.getDate() + 1);
+        } else {
+            var nextDate = new Date($('#rentDateBegin').datepicker('getDate'));
+            nextDate.setDate(nextDate.getDate() + 1);
+        }
+        $('#rentDateNext').html(formatDate(nextDate));
+
+        recalcCart();
+    });
+    $('#rentDateBegin').datepicker('setDate', new Date());
+
+    $('#rentDateEnd').datepicker({
+        dateFormat: dateFormat,
+        minDate: 2
+    }).on('change', function() {
+        var endDate = new Date($('#rentDateEnd').datepicker('getDate'));
+        var beginDate = new Date($('#rentDateBegin').datepicker('getDate'));
+        var countDays = Math.round((endDate - beginDate) / (1000 * 60 * 60 * 24)) + 1;
+        $('#rentDays').val(countDays);
+
+        var prevDate = new Date($('#rentDateBegin').datepicker('getDate'));
+        prevDate.setDate(prevDate.getDate() - 1);
+        $('#rentDatePrev').html(formatDate(prevDate));
+        if ($('#rentDays').val() > 1) {
+            var nextDate = new Date($('#rentDateEnd').datepicker('getDate'));
+            nextDate.setDate(nextDate.getDate() + 1);
+        } else {
+            var nextDate = new Date($('#rentDateBegin').datepicker('getDate'));
+            nextDate.setDate(nextDate.getDate() + 1);
+        }
+        $('#rentDateNext').html(formatDate(nextDate));
+
+        recalcCart();
+    });
+
+    if ($('#rentDays').val() > 1) {
+        $('#fieldDateEnd').show();
+        $('#fieldDateBeginLabel').show();
+    } else {
+        $('#fieldDateEnd').hide();
+        $('#fieldDateBeginLabel').hide();
+    }
+    var prevDate = new Date($('#rentDateBegin').datepicker('getDate'));
+    prevDate.setDate(prevDate.getDate() - 1);
+    $('#rentDatePrev').html(formatDate(prevDate));
+    if ($('#rentDays').val() > 1) {
+        var nextDate = new Date($('#rentDateEnd').datepicker('getDate'));
+        nextDate.setDate(nextDate.getDate() + 1);
+    } else {
+        var nextDate = new Date($('#rentDateBegin').datepicker('getDate'));
+        nextDate.setDate(nextDate.getDate() + 1);
+    }
+    $('#rentDateNext').html(formatDate(nextDate));
+
+    function formatDate(date) {
+        var dd = date.getDate();
+        if (dd < 10) dd = '0' + dd;
+        var mm = date.getMonth() + 1;
+        if (mm < 10) mm = '0' + mm;
+        var yy = date.getFullYear();
+        return dd + '.' + mm + '.' + yy;
+    }
+
+    recalcCart();
+
+    $('#rentDays').on('spinstop', function(event, ui) {
+        if ($('#rentDays').val() > 1) {
+            $('#fieldDateEnd').show();
+            $('#fieldDateBeginLabel').show();
+        } else {
+            $('#fieldDateEnd').hide();
+            $('#fieldDateBeginLabel').hide();
+        }
+
+        var curDate = new Date($('#rentDateBegin').datepicker('getDate'));
+        curDate.setDate(curDate.getDate() + Number($('#rentDays').val()) - 1);
+        $('#rentDateEnd').datepicker('setDate', curDate);
+
+        var prevDate = new Date($('#rentDateBegin').datepicker('getDate'));
+        prevDate.setDate(prevDate.getDate() - 1);
+        $('#rentDatePrev').html(formatDate(prevDate));
+        if ($('#rentDays').val() > 1) {
+            var nextDate = new Date($('#rentDateEnd').datepicker('getDate'));
+            nextDate.setDate(nextDate.getDate() + 1);
+        } else {
+            var nextDate = new Date($('#rentDateBegin').datepicker('getDate'));
+            nextDate.setDate(nextDate.getDate() + 1);
+        }
+        $('#rentDateNext').html(formatDate(nextDate));
+
+        recalcCart();
+    });
 }
