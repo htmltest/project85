@@ -521,8 +521,10 @@ $(document).ready(function() {
     });
 
     $('.catalogue-header h1').click(function(e) {
-        $('html').toggleClass('side-menu-open');
-        $(window).scrollTop(0);
+        if ($('.side-menu').length > 0) {
+            $('html').toggleClass('side-menu-open');
+            $(window).scrollTop(0);
+        }
     });
 
     $('.side-menu-mobile-link').click(function(e) {
@@ -643,7 +645,14 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    initOrderDates();
+    if ($('.checkout').length > 0) {
+        initOrderDates();
+    }
+
+    $('.up').click(function(e) {
+        $('html, body').animate({scrollTop: 0});
+        e.preventDefault();
+    });
 
 });
 
@@ -712,6 +721,14 @@ $(window).on('load resize', function() {
         var curLink = curMenu.find('li.active a');
         $('.product-tabs-menu-line').animate({'width': curLink.width(), 'left': curLink.offset().left - curMenu.offset().left});
     });
+});
+
+$(window).on('load resize scroll', function() {
+    if ($(window).scrollTop() > $(window).height()) {
+        $('.up').css({'display': 'block'});
+    } else {
+        $('.up').css({'display': 'none'});
+    }
 });
 
 function initForm(curForm) {
