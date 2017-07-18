@@ -75,11 +75,11 @@ $(document).ready(function() {
     $('.side-menu > ul > li').each(function() {
         var curLi = $(this);
         if (curLi.find('ul').length > 0) {
-            curLi.find('> a').append('<span></span>');
+            curLi.append('<span></span>');
         }
     });
 
-    $('.side-menu > ul > li > a').click(function(e) {
+    $('body').on('click', '.side-menu > ul > li > span', function() {
         var curLi = $(this).parent();
         if (curLi.find('ul').length > 0) {
             curLi.toggleClass('active');

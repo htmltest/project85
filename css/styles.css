@@ -20,17 +20,20 @@ img {border:none}
 h1 {font-weight:bold; font-size:25px; line-height:30px; margin:0 0 35px 0; padding:0; text-transform:uppercase; color:#000}
 h2 {font-weight:bold; font-size:20px; line-height:25px; margin:50px 0 25px 0; padding:0; text-transform:uppercase; color:#000}
 h1+h2 {margin-top:25px}
+.catalogue-header+h2 {margin-top:0}
 h3 {font-weight:bold; font-size:18px; line-height:25px; margin:50px 0 25px 0; padding:0; text-transform:uppercase; color:#000}
 h2+h3 {margin-top:25px}
+.catalogue-header+h3 {margin-top:0}
 h4 {font-weight:bold; font-size:15px; line-height:25px; margin:50px 0 25px 0; padding:0; text-transform:uppercase; color:#000}
+.catalogue-header+h4 {margin-top:0}
 h3+h4 {margin-top:25px}
 p {margin:25px 0; padding:0}
 ul {margin:25px 0; padding:0; list-style:none}
-ul li {margin:25px 0; padding:0 0 0 25px; position:relative}
+ul li {margin:10px 0; padding:0 0 0 25px; position:relative}
 ul li:before {content:""; display:block; width:7px; height:7px; background:#ea1c23; position:absolute; left:4px; top:9px; border-radius:50%}
 li ul li:before {background:#b7b7b7}
 ol {margin:25px 0; padding:0; list-style:none; counter-reset:point}
-ol li {margin:25px 0; padding:0 0 0 25px; position:relative}
+ol li {margin:10px 0; padding:0 0 0 25px; position:relative}
 ol li ol {counter-reset:subpoint}
 ol li:before {content:counter(point)'.'; counter-increment:point 1; position:absolute; left:2px; top:0; color:#000; font-weight:bold}
 li ol li:before {content:counter(point)'.'counter(subpoint); counter-increment:subpoint 1}
@@ -518,8 +521,9 @@ header {padding:29px 0 31px 0; background:#fff}
 .side-menu > ul > li > a {display:block; position:relative; padding:12px 30px; color:#000; text-decoration:none}
 .side-menu > ul > li > a:hover,
 .side-menu > ul > li.active > a {color:#ea1c23}
-.side-menu > ul > li > a > span {display:block; position:absolute; right:30px; top:50%; margin-top:-4px; width:8px; height:8px; background:url(../images/side-menu.png)}
-.side-menu > ul > li.active > a > span {background-position:left -8px}
+.side-menu > ul > li > span {display:block; position:absolute; right:0; top:0; width:38px; height:49px; background:url(../images/blank.gif); cursor:pointer}
+.side-menu > ul > li > span:before {content:""; display:block; position:absolute; right:30px; top:50%; margin-top:-4px; width:8px; height:8px; background:url(../images/side-menu.png)}
+.side-menu > ul > li.active > span:before {background-position:left -8px}
 .side-menu > ul > li > ul {display:none; font-size:13px; line-height:19px; font-weight:normal; margin:-3px 0 0 0; padding:0 33px 13px 33px; border-bottom:none; text-transform:none}
 .side-menu > ul > li.active > ul {display:block}
 .side-menu > ul > li > ul > li {margin:0; padding:0 3px 5px 3px}
@@ -533,7 +537,8 @@ header {padding:29px 0 31px 0; background:#fff}
     .side-menu-open .side-menu {display:block; border-top:1px solid #f6f6f6; position:fixed; left:0; top:174px; right:0; bottom:50px; margin:0; padding:0; overflow:auto; z-index:9; box-shadow:none; background:#fff}
     .side-menu > ul {font-size:20px}
     .side-menu > ul > li > a {padding:24px 75px 25px 55px}
-    .side-menu > ul > li > a > span {right:55px}
+    .side-menu > ul > li > span {width:63px; height:74px}
+    .side-menu > ul > li > span:before {right:55px}
     .side-menu > ul > li > ul {font-size:20px; line-height:25px; font-weight:300; margin:0; padding:0 55px 0 55px}
     .side-menu > ul > li > ul > li {padding:0 0 25px 0}
     .side-menu > ul > li > ul > li.active {font-weight:300}
@@ -1266,6 +1271,7 @@ input:checked+.bx_filter_param_label.dib .bx_filter_btn_color_icon:before {borde
 .brands-list .slick-next:hover:before {background-position:-9px -15px}
 
 .prefs {padding:99px 0 101px 0}
+.container+.prefs {padding-top:0; margin-top:-36px}
 .prefs h3 {text-align:center; margin:0}
 .prefs-list {margin:50px -15px 0 -15px}
 .prefs-list:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
