@@ -1230,14 +1230,14 @@ input:checked+.bx_filter_param_label.dib .bx_filter_btn_color_icon:before {borde
 .main-sections-item-inner {height:225px; padding:0 30px 0 30px; background:no-repeat right center; position:relative}
 .main-sections-link-root {display:block; position:absolute; left:0; top:0; right:0; bottom:0}
 .main-sections-item-05 .main-sections-item-inner {background-position:left center}
-.main-sections-item-title {font-size:18px; font-weight:900; color:#000; text-transform:uppercase; letter-spacing:1px; position:relative; padding:29px 0 0 0}
-.main-sections-item-title a {color:#000; text-decoration:none}
+.main-sections-item-title {font-size:18px; font-weight:900; color:#000; text-transform:uppercase; letter-spacing:1px; padding:29px 0 0 0}
+.main-sections-item-title a {color:#000; position:relative; text-decoration:none}
 .main-sections-item-title a:hover {color:#ea1c23; text-decoration:underline}
-.main-sections-item-inner ul {margin:10px 0 0 0; color:#fff; position:relative; line-height:15px}
-.main-sections-item-inner li {margin:0; padding:10px 0 0 0}
+.main-sections-item-inner ul {margin:10px 0 0 0; color:#fff; line-height:15px}
+.main-sections-item-inner li {margin:0; padding:10px 0 0 0; position:static}
 .main-sections-item-inner li:before {display:none}
-.main-sections-item-inner a {color:#000; text-decoration:none}
-.main-sections-item-inner a:hover {color:#ea1c23; text-decoration:underline}
+.main-sections-item-inner li a {color:#000; position:relative; text-decoration:none}
+.main-sections-item-inner li a:hover {color:#ea1c23; text-decoration:underline}
 
 @media screen and (max-width:767px) {
     .main-sections {margin:25px -8px}
