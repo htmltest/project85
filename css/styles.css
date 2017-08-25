@@ -363,47 +363,51 @@ header {padding:29px 0 31px 0; background:#fff}
     .nav {height:0; position:absolute; left:0; top:0; border-top:none}
 }
 
-.menu-add {float:left; position:relative; margin:17px 0 0 0}
+.menu-add {float:left; position:relative}
 .menu-add-logo {display:none; position:absolute; z-index:991; left:0; top:-114px; line-height:0}
 .menu-add.open .menu-add-logo {display:block}
-.menu-add-link {display:block; width:20px; height:16px; background:url(../images/menu-add-link.png)}
+.menu-add-link {display:none; width:20px; height:16px; background:url(../images/menu-add-link.png)}
 .menu-add.open .menu-add-link {background-position:left -16px; position:relative; z-index:991}
-.menu-add-main {display:none; position:absolute; left:-30px; top:29px; z-index:990; width:240px; padding:0 40px 0 30px; background:#ea1c23; margin:0; text-transform:uppercase; font-weight:bold}
-.menu-add-main:before {content:""; display:block; position:absolute; left:0; top:-999px; right:0; height:99999px; background:#ea1c23}
+.menu-add-main {padding:0; margin:0 0 0 -20px; text-transform:uppercase; font-weight:bold}
 .menu-add.open .menu-add-main {display:block}
-.menu-add-main li {margin:0; padding:0; border-top:1px solid #d2191f; position:relative}
+.menu-add-main li {float:left; margin:0; padding:0; position:relative}
 .menu-add-main li:first-child {border-top:none}
 .menu-add-main li:before {display:none}
-.menu-add-main li a {display:block; color:#fff; text-decoration:none; margin:0 -40px 0 -30px; padding:12px 40px 12px 30px}
-.menu-add-main li a:hover {background:#d0171d}
-.menu-add.open-sections .menu-add-main li.menu-add-main-link a {background:#d0171d}
-.menu-add-main li.menu-add-main-link a {position:relative}
-.menu-add-main li.menu-add-main-link a:after {content:""; display:block; width:8px; height:13px; background:url(../images/menu-add-main-link.png); position:absolute; right:40px; top:50%; margin-top:-7px}
+.menu-add-main li a {display:block; color:#000; text-decoration:none; padding:0 20px; line-height:49px}
+.menu-add-main li a:hover {background:#ea1c23; color:#fff}
+.menu-add.open-sections .menu-add-main li.menu-add-main-link a {background:#ea1c23; color:#fff}
 .open-menu-add body {overflow:hidden}
 
 @media screen and (max-width:1199px) {
     .menu-add {margin:0}
     .menu-add-link {display:block; position:absolute; left:0; top:26px; width:30px; height:24px; background:url(../images/menu-add-link-mobile.png)}
     .menu-add.open .menu-add-link {background-position:left -24px}
-    .menu-add-main {font-size:20px; left:0; padding:76px 50px 0 30px; position:fixed; right:0; bottom:0; top:0; width:auto; overflow:auto}
-    .menu-add-main li a {padding:23px 50px 26px 30px; margin-right:-50px; margin-left:-30px}
+    .menu-add-main {display:none; float:none; font-size:20px; left:0; background:#ea1c23; padding:76px 50px 0 30px; position:fixed; right:0; bottom:0; top:0; width:auto; overflow:auto; z-index:990; margin-left:0}
+    .menu-add.open .menu-add-main {display:block}
+    .menu-add-main:before {content:""; display:block; position:absolute; left:0; top:-999px; right:0; bottom:0; background:#ea1c23}
+    .menu-add-main li {float:none; border-top:1px solid #d2191f}
+    .menu-add-main li a {padding:23px 50px 26px 30px; color:#fff; margin:0 -50px 0 -30px; line-height:25px}
+    .menu-add.open-sections .menu-add-main li.menu-add-main-link a {background:#d0171d}
+    .menu-add-main li.menu-add-main-link a {position:relative}
+    .menu-add-main li.menu-add-main-link a:after {content:""; display:block; width:8px; height:13px; background:url(../images/menu-add-main-link.png); position:absolute; right:40px; top:50%; margin-top:-7px}
     .menu-add-main li.menu-add-main-link a:after {right:50px}
 }
 
-.menu-add-sections {opacity:0; visibility:hidden; z-index:990; position:fixed; left:215px; top:0; bottom:0; background:#fff; width:298px; box-shadow:0 15px 30px rgba(185, 185, 185, .52); transition:left .4s, opacity .4s, visibility .4s}
+.menu-add-sections {opacity:0; visibility:hidden; z-index:990; position:absolute; left:-20px; top:100%; background:#ea1c23; width:298px; transition:left .4s, opacity .4s, visibility .4s}
 @media screen and (min-width:1200px) {
     .menu-add-sections {transition:none}
 }
-.menu-add.open.open-sections .menu-add-sections {opacity:1; visibility:visible; left:280px}
-.menu-add-sections > ul {margin:0; font-size:13px; line-height:25px; text-transform:uppercase; font-weight:bold; padding:21px 0 0 0}
-.menu-add-sections > ul > li {margin:0; padding:0; border-bottom:1px solid #f6f6f6; position:static}
+.menu-add.open-sections .menu-add-sections {opacity:1; visibility:visible; left:-20px}
+.menu-add-sections > ul {margin:0; padding:0; font-size:13px; line-height:25px; text-transform:uppercase; font-weight:bold}
+.menu-add-sections > ul > li {margin:0; padding:0; border-top:1px solid #d21e25; position:static}
+.menu-add-sections > ul > li:first-child {border-top:none}
 .menu-add-sections > ul > li:before {display:none}
-.menu-add-sections > ul > li > a {display:block; padding:11px 80px 13px 40px; text-decoration:none; color:#000; position:relative}
-.menu-add-sections > ul > li > a:after {content:""; display:block; width:8px; height:13px; background:url(../images/menu-add-sections.png); position:absolute; right:40px; top:50%; margin-top:-7px}
+.menu-add-sections > ul > li > a {display:block; padding:11px 40px 13px 20px; text-decoration:none; color:#fff; position:relative}
+.menu-add-sections > ul > li > a:after {content:""; display:block; width:8px; height:13px; background:url(../images/menu-add-sections-desktop.png); position:absolute; right:20px; top:50%; margin-top:-7px}
 .menu-add-sections > ul > li > a:hover,
-.menu-add-sections > ul > li.open > a {background:#f6f6f6}
+.menu-add-sections > ul > li.open > a {background:#d21e25}
 
-.menu-add-section {opacity:0; visibility:hidden; z-index:990; position:absolute; left:223px; top:0; bottom:0; background:#fafafa; width:390px; box-shadow:0 7px 50px rgba(0, 0, 0, .33); transition:left .4s, opacity .4s, visibility .4s}
+.menu-add-section {opacity:0; visibility:hidden; z-index:990; position:fixed; left:223px; top:0; bottom:0; background:#fafafa; width:390px; box-shadow:0 7px 50px rgba(0, 0, 0, .33); transition:left .4s, opacity .4s, visibility .4s}
 @media screen and (min-width:1200px) {
     .menu-add-section {transition:none}
 }
@@ -414,10 +418,14 @@ header {padding:29px 0 31px 0; background:#fff}
 }
 .menu-add-sections .main-sections-item {float:none; text-transform:none; font-weight:normal; width:390px; padding:0}
 .menu-add-sections .main-sections-item .main-sections-item-inner {height:250px; background-size:auto 100%; background-position:right top; position:relative}
+.main-sections-item-inner-link {position:absolute; left:0; top:0; right:0; bottom:0; display:block}
 .menu-add-sections .main-sections-item-05 .main-sections-item-inner {background-position:195px top}
 .menu-add-sections .main-sections-item .main-sections-item-inner:before {content:""; display:block; position:absolute; left:0; top:0; width:50%; bottom:0; background:#fff}
 .menu-add-sections .main-sections-item .main-sections-item-title {padding-top:69px}
+.menu-add-sections .main-sections-item .main-sections-item-title a {position:relative}
 .menu-add-sections .main-sections-item .main-sections-item-inner ul {margin-top:0}
+.menu-add-sections .main-sections-item .main-sections-item-inner ul li {position:static}
+.menu-add-sections .main-sections-item .main-sections-item-inner ul li a {position:relative}
 .menu-add-sections .main-sections-item:hover {position:static; z-index:auto}
 @media screen and (min-width:1200px) {
     .menu-add-sections .main-sections-item:hover .main-sections-item-bg {transform:none; box-shadow:none}
@@ -446,11 +454,15 @@ header {padding:29px 0 31px 0; background:#fff}
 }
 
 @media screen and (max-width:1199px) {
-    .menu-add-sections {left:223px; top:0}
+    .menu-add-sections {left:223px; top:0; background:#fff}
     .menu-add.open.open-sections .menu-add-sections {left:288px}
     .menu-add-section {left:-3px}
+    .menu-add-sections > ul > li {border-top:none; border-bottom:1px solid #f6f6f6}
     .menu-add-sections > ul > li.open .menu-add-section {left:62px}
-    .menu-add-sections > ul > li > a {padding:25px 80px 25px 35px}
+    .menu-add-sections > ul > li > a {color:#000; padding:25px 80px 25px 35px}
+    .menu-add-sections > ul > li > a:after {background:url(../images/menu-add-sections.png); right:40px}
+    .menu-add-sections > ul > li > a:hover,
+    .menu-add-sections > ul > li.open > a {background:#f6f6f6}
 }
 
 @media screen and (max-width:767px) {
@@ -469,21 +481,6 @@ header {padding:29px 0 31px 0; background:#fff}
     .menu-add-sections .main-sections-item-04 .main-sections-item-img {top:35px}
     .menu-add-catalogue {margin-top:0; max-height:none !important; position:absolute; left:0; top:300px; bottom:20px; width:379px}
     .menu-add-section .main-sections-item-08 .main-sections-item-title {padding-right:30px}
-}
-
-.menu {float:left; font-weight:bold; text-transform:uppercase; line-height:49px; letter-spacing:1px}
-.menu ul {margin:0 0 0 34px}
-.menu ul li {float:left; margin:0; padding:0 0 0 30px}
-.menu ul li:before {display:none}
-.menu ul li a {float:left; color:#000; text-decoration:none; position:relative; height:49px; padding:0 5px}
-.menu ul li a:after {content:""; display:block; height:0; position:absolute; left:0; bottom:0; right:0; background:#fafafa; transition:height .3s ease}
-.menu ul li a:hover,
-.menu ul li.active a {color:#ea1c23}
-.menu ul li a:hover:after {height:6px}
-.menu ul li.active a:after {content:""; display:block; height:6px; position:absolute; left:0; bottom:0; right:0; background:#fafafa}
-
-@media screen and (max-width:1199px) {
-    .menu {display:none}
 }
 
 .breadcrumbs {font-size:11px; text-transform:uppercase; padding:23px 0 0 0}
