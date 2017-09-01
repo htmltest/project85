@@ -82,7 +82,8 @@ $(document).ready(function() {
     $('body').on('click', '.side-menu > ul > li > span', function() {
         var curLi = $(this).parent();
         if (curLi.find('ul').length > 0) {
-            curLi.toggleClass('active');
+            curLi.toggleClass('open closed');
+            curLi.find('ul').slideToggle(100);
             e.preventDefault();
         }
     });
