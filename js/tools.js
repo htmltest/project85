@@ -650,7 +650,7 @@ $(document).ready(function() {
         initOrderDates();
     }
 
-    $('.up').click(function(e) {
+    $('.up-link').click(function(e) {
         $('html, body').animate({scrollTop: 0});
         e.preventDefault();
     });
@@ -731,9 +731,9 @@ $(window).on('load resize', function() {
 
 $(window).on('load resize scroll', function() {
     if ($(window).scrollTop() > $(window).height()) {
-        $('.up').css({'display': 'block'});
+        $('.up-link').css({'display': 'block'});
     } else {
-        $('.up').css({'display': 'none'});
+        $('.up-link').css({'display': 'none'});
     }
 });
 
