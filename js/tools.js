@@ -165,12 +165,13 @@ $(document).ready(function() {
     $('.product-photo-preview ul li a').click(function(e) {
         var curLink = $(this);
         var curLi = curLink.parent();
+        var curBlock = curLi.parents().filter('.product-photo');
         if (!curLink.parent().hasClass('active')) {
-            $('.product-photo-preview ul li.active').removeClass('active');
+            curBlock.find('.product-photo-preview ul li.active').removeClass('active');
             curLi.addClass('active');
-            var curIndex = $('.product-photo-preview ul li').index(curLi);
-            $('.product-photo-big a.active').removeClass('active');
-            $('.product-photo-big a').eq(curIndex).addClass('active');
+            var curIndex = curBlock.find('.product-photo-preview ul li').index(curLi);
+            curBlock.find('.product-photo-big a.active').removeClass('active');
+            curBlock.find('.product-photo-big a').eq(curIndex).addClass('active');
         }
         e.preventDefault();
     });
@@ -239,11 +240,12 @@ $(document).ready(function() {
     });
 
     $('body').on('click', '.product-photo-big-inner a', function(e) {
+        var curBlock = $(this).parents().filter('.product-photo');
         var curArray = [];
-        $('.product-photo-preview a').each(function() {
+        curBlock.find('.product-photo-preview a').each(function() {
             curArray.push({src: $(this).attr('rel')});
         });
-        var curIndex = $('.product-photo-preview li').index($('.product-photo-preview li.active'));
+        var curIndex = curBlock.find('.product-photo-preview li').index(curBlock.find('.product-photo-preview li.active'));
         $.fancybox.open(curArray, {
                 baseTpl	: '<div class="fancybox-container" role="dialog" tabindex="-1">' +
                     '<div class="fancybox-bg"></div>' +
