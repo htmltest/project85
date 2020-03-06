@@ -1803,5 +1803,5 @@ footer {background:#fff; height:400px; margin:-400px 0 0 0; position:relative; m
 .about-photo img {display:block; width:100%}
 
 @media screen and (max-width:767px) {
-    .about-photo {float:none; margin:10px -25px; width:auto}
+    .about-photo {float:none; margin:10px -25px 35px -25px; width:auto}
 }
